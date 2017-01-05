@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bm_search.hpp" />
+    <ClInclude Include="sequential_search.hpp" />
     <ClInclude Include="simple_search.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
