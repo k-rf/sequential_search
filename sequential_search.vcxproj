@@ -120,12 +120,13 @@
   <ItemGroup>
     <ClCompile Include="bm_search.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="progress_bar.cpp" />
     <ClCompile Include="simple_search.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bm_search.hpp" />
-    <ClInclude Include="sequential_search.hpp" />
-    <ClInclude Include="simple_search.hpp" />
+    <ClInclude Include="bm_search.h" />
+    <ClInclude Include="progress_bar.h" />
+    <ClInclude Include="simple_search.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

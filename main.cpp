@@ -20,31 +20,11 @@
 #include <iomanip>
 #include <vector>
 
-#include "sequential_search.hpp"
-#include "simple_search.hpp"
-#include "bm_search.hpp"
+#include "simple_search.h"
+#include "bm_search.h"
+#include "progress_bar.h"
 
 using namespace std;
-
-void progressBar(int current_value, int max_value, char fill_char)
-{
-	std::stringstream s;
-	s << "||";
-
-	const int bar_length = 40;
-	int grid = max_value / bar_length;
-	bool update = false;
-
-	for(int i = 1; i <= bar_length; i++)
-	{
-		if(current_value > i * grid) { s << fill_char; update = true; }
-		else { s << " "; }
-	}
-	s << "||\r";
-
-	if(update) { std::cout << s.str(); update = false; }
-
-}
 
 
 int text_length = 50;
@@ -52,10 +32,8 @@ const int key_length = 10;
 
 int main()
 {
-	ofstream simple;
+	ofstream simple, bm;
 	simple.open(".\\ss.dat");
-
-	ofstream bm;
 	bm.open(".\\bm.dat");
 
 	
@@ -67,17 +45,10 @@ int main()
 
 	
 	string text, keyword;
-	
+		
 	// テストコード
-	//text = "baaaabaaabaaaaaaaaaa";
-	//keyword = "aaaaaaaaaa";
-
-	//generateSkipTable(keyword);
-	//for(vector<HashTable>::iterator itr = skip_table.begin();
-	//	itr != skip_table.end(); itr++)
-	//{
-	//	cout << *itr << endl;
-	//}
+	//text =    "aaabaaa";
+	//keyword = "aa";
 
 	//cout << "text   : " << text << endl;
 	//cout << "keyword: " << keyword << endl;
@@ -88,19 +59,17 @@ int main()
 	for(int i = 0; i < key_length; i++) { keyword += material[rand(mt)]; }
 	
 	
-	generateSkipTable(keyword);
-	
 	const int max_text_length = 100000;
 	while(text_length <= max_text_length)
 	{
+		progressBar(text_length, max_text_length, '#');
+
 		simple << setw(6) << text_length << " " << simpleSearch(text, keyword) << endl;
 		bm << setw(6) << text_length << " " << bmSearch(text, keyword) << endl;
 
 		text.clear();
 		text_length += 50;
 		for(int i = 0; i < text_length; i++) { text += material[rand(mt)]; }
-
-		progressBar(text_length, max_text_length, '#');
 	}
 	cout << endl;
 
